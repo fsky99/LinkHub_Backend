@@ -9,7 +9,7 @@ module.exports = {
 }
 
 //find all Comment
-async function findAllComments(res) {
+async function findAllComments(req,res) {
   const comment = await Comment.find({})
   res.send(comment)
 }
