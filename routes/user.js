@@ -11,7 +11,12 @@ router.post('/', userCtrl.createUser)
 router.put('/:id', userCtrl.updateUser)
 router.delete('/:id', userCtrl.deleteUser)
 
-router.post('/login', controller.login)
+router.post('/signin', controller.signin)
 router.post('/register', controller.register)
-
+router.get(
+  '/session',
+  middleware.striptoken,
+  middleware.verifyToken,
+  controller.checkSession
+)
 module.exports = router

@@ -10,6 +10,7 @@ let postRouter = require('./routes/post')
 let commentRouter = require('./routes/comment')
 let replyRouter = require('./routes/reply')
 
+const homeRouter = require('./routes/home')
 //rotes
 
 let app = express()
@@ -24,6 +25,10 @@ app.use('/user', userRouter)
 app.use('/post', postRouter)
 app.use('/comment', commentRouter)
 app.use('/reply', replyRouter)
+
+app.use('/', (req, res) => {
+  console.log('connected')
+})
 
 app.use(function (req, res, next) {
   next(createError(404))
