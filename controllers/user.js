@@ -4,8 +4,9 @@ const middleware = require('../middleware')
 module.exports = {
   findAllUsers,
   findUser,
-  login,
-  register
+  register,
+  signin,
+  checkSession
 }
 
 //find all users
@@ -23,7 +24,7 @@ async function findUser(req, res) {
   res.send(user)
 }
 
-async function login(req, res) {
+async function signin(req, res) {
   try {
     const { email, password } = req.body
     const user = await User.findOne({ email })
@@ -64,4 +65,9 @@ async function register(req, res) {
   } catch (error) {
     console.log(error)
   }
+}
+
+async function checkSession(req, res) {
+  const { payload } = res.locals
+  res.send(payload)
 }

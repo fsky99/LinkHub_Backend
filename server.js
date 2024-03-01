@@ -7,7 +7,7 @@ require('dotenv').config()
 require('./config/database')
 
 const userRouter = require('./routes/user')
-
+const homeRouter = require('./routes/home')
 //rotes
 
 let app = express()
@@ -19,7 +19,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 //routers
+
 app.use('/user', userRouter)
+
+app.use('/', (req, res) => {
+  console.log('connected')
+})
 
 app.use(function (req, res, next) {
   next(createError(404))
