@@ -2,6 +2,7 @@ let express = require('express')
 const cors = require('cors')
 let cookieParser = require('cookie-parser')
 let logger = require('morgan')
+
 require('dotenv').config()
 require('./config/database')
 
@@ -10,6 +11,7 @@ let postRouter = require('./routes/post')
 let commentRouter = require('./routes/comment')
 let replyRouter = require('./routes/reply')
 
+const homeRouter = require('./routes/home')
 //rotes
 
 let app = express()
