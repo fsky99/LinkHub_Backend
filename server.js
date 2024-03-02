@@ -10,7 +10,6 @@ let postRouter = require('./routes/post')
 let commentRouter = require('./routes/comment')
 let replyRouter = require('./routes/reply')
 
-const homeRouter = require('./routes/home')
 //rotes
 
 let app = express()
