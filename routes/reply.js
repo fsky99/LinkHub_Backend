@@ -1,11 +1,37 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
+const middleware = require('../middleware')
 
-const replyCtrl = require("../controllers/reply")
+const replyCtrl = require('../controllers/reply')
 
-router.get("/", replyCtrl.findAllReplies)
-router.get("/:id", replyCtrl.findReply)
-router.post("/", replyCtrl.createReply)
-router.put("/:id", replyCtrl.updateReply)
-router.delete("/:id", replyCtrl.deleteReply)
+router.get(
+  '/',
+  middleware.striptoken,
+  middleware.verifyToken,
+  replyCtrl.findAllReplies
+)
+router.get(
+  '/:id',
+  middleware.striptoken,
+  middleware.verifyToken,
+  replyCtrl.findReply
+)
+router.post(
+  '/',
+  middleware.striptoken,
+  middleware.verifyToken,
+  replyCtrl.createReply
+)
+router.put(
+  '/:id',
+  middleware.striptoken,
+  middleware.verifyToken,
+  replyCtrl.updateReply
+)
+router.delete(
+  '/:id',
+  middleware.striptoken,
+  middleware.verifyToken,
+  replyCtrl.deleteReply
+)
 module.exports = router
