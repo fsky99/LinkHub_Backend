@@ -1,4 +1,6 @@
 const Post = require("../models/post")
+const fs = require("fs")
+const path = require("path")
 
 module.exports = {
   findAllPosts,
@@ -9,7 +11,7 @@ module.exports = {
 }
 
 //find all Posts
-async function findAllPosts(req,res) {
+async function findAllPosts(req, res) {
   const post = await Post.find({})
   res.send(post)
 }
@@ -24,13 +26,28 @@ async function findPost(req, res) {
 //create Post
 async function createPost(req, res) {
   try {
-    await Post.create(req.body)
+    const { image } = req.files
+
+    if (!image) return res.status(400).send({ errorMsg: "No image uploaded" })
+
+    const uploadPath = path.join(__dirname, "../uploads", image.name)
+
+    await image.mv(uploadPath)
+
+    const postData = {
+     ...req.body,
+      image: uploadPath,
+     
+    }
+    await Post.create(postData)
+
     res.send("Post Created")
   } catch (error) {
-    console.log("This is the error : " + err)
-    res.send({ errorMsg: err.message })
+    console.log("This is the error : " + error)
+    res.status(500).send({ errorMsg: error.message })
   }
 }
+
 //update Post
 async function updatePost(req, res) {
   try {
