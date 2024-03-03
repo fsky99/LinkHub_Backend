@@ -35,9 +35,8 @@ async function createPost(req, res) {
     await image.mv(uploadPath)
 
     const postData = {
-     ...req.body,
+      ...req.body,
       image: uploadPath,
-     
     }
     await Post.create(postData)
 
