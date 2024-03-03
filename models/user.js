@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema(
@@ -12,26 +12,26 @@ const userSchema = new Schema(
     following: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
-      },
+        ref: 'User'
+      }
     ],
     followers: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
-      },
+        ref: 'User'
+      }
     ],
     posts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Post",
-      },
+        ref: 'Post'
+      }
     ],
-    status: String,
+    status: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 )
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model('User', userSchema)
