@@ -102,5 +102,6 @@ async function register(req, res) {
 
 async function checkSession(req, res) {
   const { payload } = res.locals
+  // console.log(res.locals)
   res.send(payload)
 }

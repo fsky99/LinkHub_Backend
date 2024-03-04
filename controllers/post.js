@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const User = require("../models/user")
 const fs = require('fs')
 var path = require('path')
 const app = require('../server')
@@ -44,17 +45,30 @@ async function createPost(req, res) {
       folder: 'postImage'
     })
 
-    // if (req.body.image === null) {
-    //   uploadPath = '../uploads/.png'
-    // } else {
-    //   req.body.image = uploadPath
-    // }
-    req.body.image = result.secure_url
+    if (req.body.image === null) {
+      uploadPath = "../uploads/.png"
+    } else {
+      req.body.image = result.secure_url
+    }
     const newPost = await Post.create(req.body)
+
+    const userId = res.locals.payload.id
+    console.log("res locals : ", res.locals)
+    console.log("User ID:", userId)
+    console.log("New Post:", newPost)
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $push: { posts: newPost._id } },
+      { new: true }
+    )
+
+    console.log("Updated User:", updatedUser)
 
     res.send('Post Created')
   } catch (error) {
-    console.log('This is the error : ' + error)
+
+    console.log("Error creating post:", error)
     res.status(500).send({ errorMsg: error.message })
   }
 }
