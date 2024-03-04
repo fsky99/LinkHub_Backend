@@ -14,7 +14,7 @@ module.exports = {
 
 //find all users
 async function findAllUsers(req, res) {
-  const user = await User.find({})
+  const user = await User.find({}).populate('posts')
   res.send(user)
 }
 
