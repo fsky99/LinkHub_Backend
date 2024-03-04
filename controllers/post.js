@@ -1,7 +1,7 @@
 const Post = require("../models/post")
+const User = require("../models/user")
 const fs = require("fs")
 const path = require("path")
-
 module.exports = {
   findAllPosts,
   findPost,
@@ -33,16 +33,29 @@ async function createPost(req, res) {
     const uploadPath = path.join(__dirname, "../uploads", image.name)
 
     await image.mv(uploadPath)
-
-    const postData = {
-      ...req.body,
-      image: uploadPath,
+    if (req.body.image === null) {
+      uploadPath = "../uploads/.png"
+    } else {
+      req.body.image = uploadPath
     }
-    await Post.create(postData)
+    const newPost = await Post.create(req.body)
+
+    const userId = res.locals.payload.id
+    console.log("res locals : ", res.locals)
+    console.log("User ID:", userId)
+    console.log("New Post:", newPost)
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $push: { posts: newPost._id } },
+      { new: true }
+    )
+
+    console.log("Updated User:", updatedUser)
 
     res.send("Post Created")
   } catch (error) {
-    console.log("This is the error : " + error)
+    console.log("Error creating post:", error)
     res.status(500).send({ errorMsg: error.message })
   }
 }
