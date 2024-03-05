@@ -29,7 +29,7 @@ async function createComment(req, res) {
     const userId = res.locals.payload.id
     const updatedUser = await Post.findByIdAndUpdate(
       req.body.postId,
-      { $push: { comment: newComment._id } },
+      { $push: { comment: newComment } },
       { new: true }
     )
     console.log("Updated User:", updatedUser)
