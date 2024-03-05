@@ -23,6 +23,9 @@ async function findReply(req, res) {
 async function createReply(req, res) {
   try {
     await Reply.create(req.body)
+
+    //update the comment array to add the replay id
+    // findByIdAndUpdate
     res.send("Reply Created")
   } catch (error) {
     console.log("This is the error : " + err)
