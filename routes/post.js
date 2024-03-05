@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const middleware = require('../middleware')
+const multer = require('multer')
 
 const postCtrl = require('../controllers/post')
+
+const upload = multer({
+  dest: '../uploads'
+})
 
 router.get(
   '/',
