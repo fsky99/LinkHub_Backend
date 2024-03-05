@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "node --watch server.js"
+    "dev": "npx nodemon server.js"
   },
   "author": "",
   "license": "ISC",

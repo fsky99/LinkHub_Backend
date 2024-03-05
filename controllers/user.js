@@ -20,11 +20,17 @@ async function findAllUsers(req, res) {
 
 //find specific user
 async function findUser(req, res) {
-  const user = await User.findById(req.params.id)
-    .populate('posts')
-    .populate('following')
-    .populate('followers')
-  res.send(user)
+  try {
+    const user = await User.findById(req.params.id)
+      .populate('posts')
+      .populate('following')
+      .populate('followers')
+    res.send(user)
+    
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send("Server error")
+  }
 }
 //create user
 async function createUser(req, res) {
