@@ -1,5 +1,5 @@
 const Reply = require("../models/reply")
-
+const Comment = require("../models/comment")
 module.exports = {
   findAllReplies,
   findReply,
@@ -9,7 +9,7 @@ module.exports = {
 }
 
 //find all Replies
-async function findAllReplies(req,res) {
+async function findAllReplies(req, res) {
   const reply = await Reply.find({})
   res.send(reply)
 }
@@ -22,7 +22,14 @@ async function findReply(req, res) {
 //create Reply
 async function createReply(req, res) {
   try {
-    await Reply.create(req.body)
+    const replayToPush = await Reply.create(req.body)
+
+    const updatedCommentWithREplayId = await Comment.findByIdAndUpdate(
+      req.body.commentId,
+      { $push: { reply: replayToPush } },
+      { new: true }
+    )
+    console.log("Updated User:", updatedCommentWithREplayId)
     res.send("Reply Created")
   } catch (error) {
     console.log("This is the error : " + err)
