@@ -84,8 +84,8 @@ async function signin(req, res) {
 
 async function register(req, res) {
   try {
-    const { email, country, password, userName } = req.body
-    console.log("password", password)
+    const { email, password, userName } = req.body
+
     let passwordDigest = await middleware.hashPassword(password)
     let existingUser = await User.findOne({ email })
     if (existingUser) {
@@ -108,6 +108,5 @@ async function register(req, res) {
 
 async function checkSession(req, res) {
   const { payload } = res.locals
-  // console.log(res.locals)
   res.send(payload)
 }
