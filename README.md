@@ -5,6 +5,7 @@
 Your go-to destination for social connection and discovery! LinkHub is more than just a social media app -
 it's your gateway to a vibrant community where connections flourish, ideas spark, and conversations thrive.
 
+
 ## Overview
 
 LinkHub consists of two main repositories:
@@ -32,6 +33,7 @@ LinkHub is a platform dedicated to sharing travel experiences through captivatin
 + Engaging Discussions: Connect with other users through dynamic and meaningful discussions.
 
 
+
 ## Getting Started
 Welcome to LinkHub! We're excited to have you join our community of passionate travelers. Follow these simple steps to make the most of your LinkHub experience:
 
@@ -49,6 +51,7 @@ Create your LinkHub account to unlock all the features and connect with the comm
 3. Share Your Travel Stories:
 
 + Upload Pictures: Share the magic of your favorite destinations by uploading pictures. Whether it's a breathtaking sunset or a cozy cafe, your visuals will inspire and connect with others.
+
 + Write Reviews: Help the community by providing insightful reviews of the places you've visited. Share tips, hidden gems, and any must-try local experiences.
 + Engage in Discussions: Join discussions on posts that resonate with you. Whether you want to share your own experiences or seek advice for your next trip, our comment section is the place for lively conversations.
 
@@ -71,3 +74,4 @@ Our dedicated team members are passionate about creating a vibrant and inclusive
 + [Zahraa](https://github.com/ZahraaAlhawaj)
 + [Fatima](https://github.com/fsky99)
 + [Hamad](https://github.com/Hamad-Alfandi)
+
